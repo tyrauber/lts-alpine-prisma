@@ -4,7 +4,7 @@ WORKDIR /prisma
 ENV RUSTFLAGS="-C target-feature=-crt-static"
 RUN apk --no-cache add openssl direnv git musl-dev openssl-dev build-base perl protoc
 RUN git clone --depth=1 --branch=3.9.0 https://github.com/prisma/prisma-engines.git ./
-RUN cargo build --release --jobs 1
+RUN cargo build --release
 
 FROM node:lts-alpine as base
 
@@ -22,4 +22,3 @@ ENV PRISMA_QUERY_ENGINE_BINARY=/prisma-engines/query-engine \
 COPY --from=prisma /prisma/target/release/query-engine /prisma/target/release/migration-engine /prisma/target/release/introspection-engine /prisma/target/release/prisma-fmt /prisma-engines/
 
 ENV PRISMA_SKIP_POSTINSTALL_GENERATE=true
-
