@@ -1,4 +1,4 @@
-FROM tyrauber/lts-alpine-prisma as base
+FROM ghcr.io/tyrauber/lts-alpine-prisma:latest as base
 
 RUN apk upgrade --update-cache --available && \
     apk add git openssl && \

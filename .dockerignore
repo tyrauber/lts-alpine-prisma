@@ -3,3 +3,5 @@ dist
 .env
 .turbo
 .expo
+*.db
+*.db-journal

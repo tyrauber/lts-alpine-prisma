@@ -1,13 +1,14 @@
 {
-  "name": "issue-prisma-in-pnpm-workspace",
+  "name": "lts-alpine-prisma",
   "private": true,
+  "version": "0.0.2",
   "engines": {
     "node": ">=16.13",
     "pnpm": ">=6.24"
   },
   "scripts":{
-    "build": "pnpm --filter=@issue-prisma-in-pnpm-workspace/sample build",
-    "start": "pnpm --filter=@issue-prisma-in-pnpm-workspace/sample start",
+    "build": "pnpm --filter@packages/example build",
+    "start": "pnpm --filter=@packages/example start",
     "example:build": "docker buildx build --no-cache --progress=plain -f packages/example/Dockerfile . -t tyrauber/lts-alpine-prisma-example",
     "example:start": "docker run -p 8080:8080 -p 3000:3000 tyrauber/lts-alpine-prisma-example" 
   }

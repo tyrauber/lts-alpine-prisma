@@ -3,9 +3,8 @@ name: Build and Publish
 on:
   push:
     branches:
-      - 'master'
-      - 'develop'
-env:
+      - 'main'
+
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
 
@@ -13,6 +12,10 @@ jobs:
   build-and-push-docker-image:
     name: Build Docker image and push to repositories
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node: ['linux/amd64','linux/arm64']
 
     steps:
       - name: Checkout code
@@ -57,7 +60,7 @@ jobs:
         with:
           context: .
           push: ${{ github.event_name != 'pull_request' }}
-          platforms: linux/amd64,linux/arm64
+          platforms: ${{ matrix.platform }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
