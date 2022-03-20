@@ -1,0 +1,18 @@
+generator client {
+  provider      = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+  binaryTargets   = ["native", "linux-arm-openssl-1.1.x"]
+}
+
+model users {
+  id           String     @id @default(uuid())
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  username     String?    @unique
+  email        String     @unique
+  passwordHash String
+}

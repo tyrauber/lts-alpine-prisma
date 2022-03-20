@@ -1,7 +1,7 @@
 node_modules
-*.log
 dist
-.DS_Store
 .env
+.turbo
+.expo
 *.db
 *.db-journal
